@@ -59,7 +59,7 @@ class TLDetector(object):
 
     def waypoints_cb(self, waypoints):
         #Store the base waypoints and base waypoints doesn't change
-        self.base_waypoints = waypoints
+        self.waypoints = waypoints
         #To find the closed waypoint infront of the car we use KDTree
         #KDTree is efficient way to look up the closest point in space
         if not self.waypoints_2d:
