@@ -84,6 +84,7 @@ class DBWNode(object):
         self.loop()
 
     def loop(self):
+        #DBW shuts off if it recieves commands at less than 20Hz, as part of safety feature
         rate = rospy.Rate(50) # 50Hz
         while not rospy.is_shutdown():
             # TODO: Get predicted throttle, brake, and steering using `twist_controller`
@@ -107,15 +108,14 @@ class DBWNode(object):
     
     def dbw_enabled_cb(self,msg):
         self.dbw_enabled = msg
-    
-    def twist_cb(self, msg):
+
+    def twist_cb(self,msg):
         self.linear_vel = msg.twist.linear.x
         self.angular_vel = msg.twist.angular.z
-        
-    def velocity_cb(self, msg):
+    
+    def velocity_cb(self,msg):
         self.current_vel = msg.twist.linear.x
     
-
     def publish(self, throttle, brake, steer):
         tcmd = ThrottleCmd()
         tcmd.enable = True

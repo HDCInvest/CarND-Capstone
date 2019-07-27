@@ -59,7 +59,8 @@ class Controller(object):
 
         throttle = self.throttle_controller.step(vel_error,sample_time)
         brake = 0
-
+        
+        #Get brake value to keep car in stationary position
         if linear_vel == 0. and current_vel < 0.1:
             throttle = 0 
             brake = 400 # N*m - to hold the car in place if we are stopped at a ligth .Accleration is lm/s^2
