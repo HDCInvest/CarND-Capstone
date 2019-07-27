@@ -49,7 +49,7 @@ class WaypointUpdater(object):
     
     # Loop function is used so that we have control over publishing frequency
     def loop(self):
-        rate = rospy.spin(50)
+        rate = rospy.Rate(50)
         while not rospy.is_shutdown():
             if self.pose and self.base_waypoints:
                 #Get closest waypoint
